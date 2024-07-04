@@ -1,36 +1,30 @@
 package main
 
-import "fmt"
-
-type CurrentAccount struct {
-	holder  string
-	agency  int
-	account int
-	balance float64
-}
-
-func (account *CurrentAccount) Withdrawal(value float64) string {
-	canWithdrawal := value <= account.balance && value > 0
-
-	if canWithdrawal {
-		account.balance -= value
-
-		return "Saque realizado com sucesso."
-	}
-
-	return "Saldo insuficiente ou valor do saque inválido."
-
-}
+import (
+	"bank/accounts"
+	"fmt"
+)
 
 func main() {
-	firstAccount := CurrentAccount{}
-	firstAccount.holder = "Danilo Augusto"
-	firstAccount.balance = 569.9
+	firstAccount := accounts.CurrentAccount{}
+	firstAccount.Holder = "Danilo Augusto"
+	firstAccount.Balance = 300
 
-	fmt.Println(firstAccount.balance)
+	secondAccount := accounts.CurrentAccount{Holder: "Solange", Balance: 100}
 
-	fmt.Println(firstAccount.Withdrawal(200))
+	statusTransfer := firstAccount.Transfer(200, &secondAccount)
 
-	fmt.Println(firstAccount.balance)
+	fmt.Println(statusTransfer)
+
+	fmt.Println("First Account:", firstAccount.Balance)
+	fmt.Println("Second Account:", secondAccount)
+
+	// fmt.Println("First Account:", firstAccount.Withdrawal(200))
+
+	// fmt.Println("First Account:", firstAccount.Balance)
+
+	// status, Balance := firstAccount.Deposit(1200)
+
+	// fmt.Println(status, Balance)
 
 }
