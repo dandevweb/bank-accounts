@@ -9,10 +9,28 @@ type CurrentAccount struct {
 	balance float64
 }
 
-func main() {
-	firstAccount := CurrentAccount{"Danilo", 12, 123232, 10.90}
-	secondAccount := CurrentAccount{"Maria", 12, 123232, 10.90}
+func (account *CurrentAccount) Withdrawal(value float64) string {
+	canWithdrawal := value <= account.balance && value > 0
 
-	fmt.Println(firstAccount)
-	fmt.Println(secondAccount)
+	if canWithdrawal {
+		account.balance -= value
+
+		return "Saque realizado com sucesso."
+	}
+
+	return "Saldo insuficiente ou valor do saque inválido."
+
+}
+
+func main() {
+	firstAccount := CurrentAccount{}
+	firstAccount.holder = "Danilo Augusto"
+	firstAccount.balance = 569.9
+
+	fmt.Println(firstAccount.balance)
+
+	fmt.Println(firstAccount.Withdrawal(200))
+
+	fmt.Println(firstAccount.balance)
+
 }
