@@ -6,25 +6,10 @@ import (
 )
 
 func main() {
+	// firstHolder := customers.Holder{"Bruno", "123.456.789-10", "Desenvolvedor"}
 	firstAccount := accounts.CurrentAccount{}
-	firstAccount.Holder = "Danilo Augusto"
-	firstAccount.Balance = 300
+	firstAccount.Deposit(100)
 
-	secondAccount := accounts.CurrentAccount{Holder: "Solange", Balance: 100}
-
-	statusTransfer := firstAccount.Transfer(200, &secondAccount)
-
-	fmt.Println(statusTransfer)
-
-	fmt.Println("First Account:", firstAccount.Balance)
-	fmt.Println("Second Account:", secondAccount)
-
-	// fmt.Println("First Account:", firstAccount.Withdrawal(200))
-
-	// fmt.Println("First Account:", firstAccount.Balance)
-
-	// status, Balance := firstAccount.Deposit(1200)
-
-	// fmt.Println(status, Balance)
+	fmt.Println(firstAccount.GetBalance())
 
 }
